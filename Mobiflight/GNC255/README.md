@@ -16,4 +16,10 @@ For both boards D/C and Reset can be choosen as you want.
 
 For now these pins have to be defined within the connector to mark them as used. This will be changed later.
 
-Connect your display accordingly the above used pins.
+Connect your display accordingly the above used pins. Depending on your display, you might need to adjust some 
+jumpers on the controller board to enable the SPI interface - below is one example of such display that works
+once the zero ohm resistors were moved to the positions marked with yellow. Some boards might be already configured
+for SPI, so check the datasheet or sales listing carefully.
+
+![image](https://github.com/MobiFlight/MobiFlight-CustomDevices/assets/2587818/c2368dea-6da4-47e7-84b9-33f550802159)
+
