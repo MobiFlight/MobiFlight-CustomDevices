@@ -77,7 +77,7 @@ MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrCo
     else if (strcmp(parameter, "MOBIFLIGHT_GENERICI2C") == 0)
         _customType = MOBIFLIGHT_GENERICI2C;
 
-    if (_customType == KAV_LCD_FCU) {
+    if (_customType == KAV_FCU) {
         /* **********************************************************************************
             Check if the device fits into the device buffer
         ********************************************************************************** */
@@ -104,7 +104,7 @@ MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrCo
         _FCU_LCD->attach(_pin2, _pin3, _pin1);
 
         _initialized = true;
-    } else if (_customType == KAV_LCD_EFIS) {
+    } else if (_customType == KAV_EFIS) {
         /* **********************************************************************************
             Check if the device fits into the device buffer
         ********************************************************************************** */
@@ -222,9 +222,9 @@ MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrCo
 void MFCustomDevice::detach()
 {
     _initialized = false;
-    if (_customType == KAV_LCD_FCU)
+    if (_customType == KAV_FCU)
         _FCU_LCD->detach();
-    else if (_customType == KAV_LCD_EFIS)
+    else if (_customType == KAV_EFIS)
         _EFIS_LCD->detach();
     else if (_customType == MOBIFLIGHT_GNC255)
         _GNC255_OLED->detach();
@@ -248,9 +248,9 @@ void MFCustomDevice::update()
         Do something if required
         -> Nothing todo for this device
     ********************************************************************************** */
-    if (_customType == KAV_LCD_FCU) {
+    if (_customType == KAV_FCU) {
         // no update() function for this device
-    } else if (_customType == KAV_LCD_EFIS) {
+    } else if (_customType == KAV_EFIS) {
         // no update() function for this device
     } else if (_customType == MOBIFLIGHT_GNC255) {
         // no update() function for this device
