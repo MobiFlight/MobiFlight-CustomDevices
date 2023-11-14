@@ -268,9 +268,9 @@ void MFCustomDevice::set(int8_t messageID, char *setPoint)
 {
     if (!_initialized) return;
 
-    if (_customType == KAV_LCD_FCU)
+    if (_customType == KAV_FCU)
         _FCU_LCD->set(messageID, setPoint);
-    else if (_customType == KAV_LCD_EFIS)
+    else if (_customType == KAV_EFIS)
         _EFIS_LCD->set(messageID, setPoint);
     else if (_customType == MOBIFLIGHT_GNC255)
         _GNC255_OLED->set(messageID, setPoint);
