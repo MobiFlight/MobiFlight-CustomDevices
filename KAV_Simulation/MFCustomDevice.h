@@ -5,8 +5,8 @@
 #include "KAV_A3XX_EFIS_LCD.h"
 
 enum {
-    KAV_LCD_FCU = 1,
-    KAV_LCD_EFIS
+    KAV_FCU = 1,
+    KAV_EFIS
 };
 class MFCustomDevice
 {

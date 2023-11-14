@@ -70,12 +70,12 @@ MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrCo
         is used to store the type
     ********************************************************************************** */
     getStringFromEEPROM(adrType, parameter);
-    if (strcmp(parameter, "KAV_LCD_FCU") == 0)
-        _lcdType = KAV_LCD_FCU;
-    if (strcmp(parameter, "KAV_LCD_EFIS") == 0)
-        _lcdType = KAV_LCD_EFIS;
+    if (strcmp(parameter, "KAV_FCU") == 0)
+        _lcdType = KAV_FCU;
+    if (strcmp(parameter, "KAV_EFIS") == 0)
+        _lcdType = KAV_EFIS;
 
-    if (_lcdType == KAV_LCD_FCU) {
+    if (_lcdType == KAV_FCU) {
         /* **********************************************************************************
             Check if the device fits into the device buffer
         ********************************************************************************** */
@@ -108,7 +108,7 @@ MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrCo
         _FCU_LCD = new (allocateMemory(sizeof(KAV_A3XX_FCU_LCD))) KAV_A3XX_FCU_LCD(_pin2, _pin3, _pin1);
         _FCU_LCD->attach(_pin2, _pin3, _pin1);
         _initialized = true;
-    } else if (_lcdType == KAV_LCD_EFIS) {
+    } else if (_lcdType == KAV_EFIS) {
         /* **********************************************************************************
             Check if the device fits into the device buffer
         ********************************************************************************** */
@@ -149,9 +149,9 @@ MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrCo
 void MFCustomDevice::detach()
 {
     _initialized = false;
-    if (_lcdType == KAV_LCD_FCU) {
+    if (_lcdType == KAV_FCU) {
         _FCU_LCD->detach();
-    } else if (_lcdType == KAV_LCD_EFIS) {
+    } else if (_lcdType == KAV_EFIS) {
         _EFIS_LCD->detach();
     }
 }
@@ -183,8 +183,8 @@ void MFCustomDevice::set(int8_t messageID, char *setPoint)
 {
     if (!_initialized) return;
 
-    if (_lcdType == KAV_LCD_FCU)
+    if (_lcdType == KAV_FCU)
         _FCU_LCD->set(messageID, setPoint);
-    else if (_lcdType == KAV_LCD_EFIS)
+    else if (_lcdType == KAV_EFIS)
         _EFIS_LCD->set(messageID, setPoint);
 }
