@@ -17,7 +17,7 @@
     "Info": {
       "CanInstallFirmware": true,
       "CanResetBoard": true,
-      "FirmwareBaseName": "kav_efis_fcu_raspberrypico",
+      "FirmwareBaseName": "kav_raspberrypico",
       "FirmwareExtension": "uf2",
       "FriendlyName": "Kav RaspiPico",
       "LatestFirmwareVersion": "2.4.4",
