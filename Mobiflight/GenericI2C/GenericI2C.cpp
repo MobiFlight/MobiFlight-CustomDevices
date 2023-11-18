@@ -34,17 +34,18 @@ void GenericI2C::detach()
 void GenericI2C::set(int8_t messageID, char *setPoint)
 {
     /* **********************************************************************************
-        Each messageID has it's own value
-        check for the messageID and define what to do.
+        MessageID and setpoint will be send via I2C
         Important Remark!
         MessageID == -1 will be send from the connector when Mobiflight is closed
-        Put in your code to shut down your custom device (e.g. clear a display)
         MessageID == -2 will be send from the connector when PowerSavingMode is entered
-        Put in your code to enter this mode (e.g. clear a display)
     ********************************************************************************** */
+    char buffer[7] = {0};
+    itoa(messageID, buffer, 10);
     Wire.beginTransmission(_addrI2C);
-    Wire.write(messageID);
+    Wire.print(buffer);
+    Wire.write(0x0D);   // send a CR to mark end of command
     Wire.print(setPoint);
+    Wire.write(0x00);   // send a NULL to mark end of messageID
     Wire.endTransmission();
 }
 
