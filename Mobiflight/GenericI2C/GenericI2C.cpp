@@ -31,7 +31,7 @@ void GenericI2C::detach()
     _initialised = false;
 }
 
-void GenericI2C::set(int8_t messageID, char *setPoint)
+void GenericI2C::set(int16_t messageID, char *setPoint)
 {
     /* **********************************************************************************
         MessageID and setpoint will be send via I2C

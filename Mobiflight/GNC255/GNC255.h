@@ -34,7 +34,7 @@ public:
     void begin();
     void attach();
     void detach();
-    void set(int8_t messageID, const char *setPoint);
+    void set(int16_t messageID, const char *setPoint);
 
 private:
     // U8G2_SSD1322_NHD_256X64_F_4W_SW_SPI *_oledDisplay;

@@ -9,7 +9,7 @@ public:
     void begin();
     void attach(uint16_t Pin3, char *init);
     void detach();
-    void set(int8_t messageID, char *setPoint);
+    void set(int16_t messageID, char *setPoint);
     void update();
 
 private:

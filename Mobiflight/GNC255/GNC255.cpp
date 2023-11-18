@@ -76,7 +76,7 @@ void GNC255::_stop()
     _oledDisplay->sendBuffer();
 }
 
-void GNC255::set(int8_t messageID, const char *data)
+void GNC255::set(int16_t messageID, const char *data)
 {
     /* **********************************************************************************
         Each messageID has it's own value

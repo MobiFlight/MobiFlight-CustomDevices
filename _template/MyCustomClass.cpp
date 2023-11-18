@@ -29,7 +29,7 @@ void MyCustomClass::detach()
     _initialised = false;
 }
 
-void MyCustomClass::set(int8_t messageID, char *setPoint)
+void MyCustomClass::set(int16_t messageID, char *setPoint)
 {
     /* **********************************************************************************
         Each messageID has it's own value

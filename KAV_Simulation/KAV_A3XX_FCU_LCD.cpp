@@ -383,7 +383,7 @@ void KAV_A3XX_FCU_LCD::displayDigit(uint8_t address, uint8_t digit)
     refreshLCD(address);
 }
 
-void KAV_A3XX_FCU_LCD::set(int8_t messageID, char *setPoint)
+void KAV_A3XX_FCU_LCD::set(int16_t messageID, char *setPoint)
 {
     int32_t data = atoi(setPoint);
     /* **********************************************************************************

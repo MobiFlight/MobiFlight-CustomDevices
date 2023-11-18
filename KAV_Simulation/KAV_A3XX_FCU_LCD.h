@@ -39,7 +39,7 @@ public:
     void clearLCD();
     void attach(byte CS, byte CLK, byte DATA);
     void detach();
-    void set(int8_t messageID, char *setPoint);
+    void set(int16_t messageID, char *setPoint);
 
     // Speed and Mach functions
     void setSpeedLabel(bool enabled);
