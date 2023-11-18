@@ -264,7 +264,7 @@ void MFCustomDevice::update()
     this function gets called when a new value is available.
     It gets called from CustomerDevice::OnSet()
 ********************************************************************************** */
-void MFCustomDevice::set(int8_t messageID, char *setPoint)
+void MFCustomDevice::set(int16_t messageID, char *setPoint)
 {
     if (!_initialized) return;
 

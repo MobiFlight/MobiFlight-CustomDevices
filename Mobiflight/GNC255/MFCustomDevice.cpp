@@ -47,7 +47,7 @@ bool MFCustomDevice::getStringFromEEPROM(uint16_t addreeprom, char *buffer)
     will be called
 ********************************************************************************** */
 
-MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig)
+MFCustomDevice::MFCustomDevice(int16_t adrPin, uint16_t adrType, uint16_t adrConfig)
 {
     if (adrPin == 0) return;
 

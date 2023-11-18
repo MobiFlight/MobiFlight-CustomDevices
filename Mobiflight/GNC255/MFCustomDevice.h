@@ -6,7 +6,7 @@
 class MFCustomDevice
 {
 public:
-    MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig);
+    MFCustomDevice(int16_t adrPin, uint16_t adrType, uint16_t adrConfig);
     void detach();
     void update();
     void set(uint8_t messageID, char *setPoint);
