@@ -4,6 +4,8 @@
 #define END_OF_I2C_MESSAGE              0x00
 #define END_OF_I2C_COMMAND              0x0D        // carriage return in ASCII
 #define END_OF_I2C_PARTIAL_MESSAGE      0x0A        // line feed in ASCII
+#define SEND_MAX_I2C_BYTES              30          // mega has only 32 bytes buffer for receiving via I2C, keep one for additional message marker and one for stop message
+
 #if defined(ARDUINO_ARCH_RP2040)
   #define BUFFER_LENGTH                 WIRE_BUFFER_SIZE
 #endif
@@ -54,7 +56,7 @@ void GenericI2C::set(int16_t messageID, char *setPoint)
     while (countChar < strlen(setPoint)) {
         Wire.write(setPoint[countChar++]);
         countI2C++;
-        if (countI2C >= (BUFFER_LENGTH - 1)) {							// if buffer will be exceeded on next characater, keep one byte for end of message marker
+        if (countI2C >= SEND_MAX_I2C_BYTES) {							// if buffer will be exceeded on next characater, keep one byte for end of message marker
             Wire.write(END_OF_I2C_PARTIAL_MESSAGE);                     // send a LF for next part of message
 			Wire.endTransmission();								        // write buffer to I2C display
 			Wire.beginTransmission(_addrI2C);							// and prepare a new transmission
