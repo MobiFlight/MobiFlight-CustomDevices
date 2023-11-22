@@ -12,6 +12,7 @@ class MFCustomDevice
 {
 public:
     MFCustomDevice();
+    MFCustomDevice(uint16_t adrPin = 0, uint16_t adrType = 0, uint16_t adrConfig = 0);
     void attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig);
     void detach();
     void update();
