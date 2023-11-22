@@ -11,7 +11,8 @@ enum {
 class MFCustomDevice
 {
 public:
-    MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig);
+    MFCustomDevice();
+    void attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig);
     void detach();
     void update();
     void set(int16_t messageID, char *setPoint);

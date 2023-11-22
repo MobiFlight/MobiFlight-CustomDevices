@@ -38,6 +38,11 @@ bool MFCustomDevice::getStringFromEEPROM(uint16_t addreeprom, char *buffer)
     return true;
 }
 
+MFCustomDevice::MFCustomDevice()
+{
+    _initialized = false;
+}
+
 /* **********************************************************************************
     Within the connector pins, a device name and a config string can be defined
     These informations are stored in the EEPROM like for the other devices.
@@ -47,7 +52,7 @@ bool MFCustomDevice::getStringFromEEPROM(uint16_t addreeprom, char *buffer)
     will be called
 ********************************************************************************** */
 
-MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig)
+void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig)
 {
     if (adrPin == 0) return;
 
