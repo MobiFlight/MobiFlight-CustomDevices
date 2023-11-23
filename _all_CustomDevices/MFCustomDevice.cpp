@@ -48,11 +48,6 @@ MFCustomDevice::MFCustomDevice()
     _initialized = false;
 }
 
-MFCustomDevice::MFCustomDevice(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig)
-{
-    attach(adrPin, adrType, adrConfig);
-}
-
 /* **********************************************************************************
     Within the connector pins, a device name and a config string can be defined
     These informations are stored in the EEPROM like for the other devices.
