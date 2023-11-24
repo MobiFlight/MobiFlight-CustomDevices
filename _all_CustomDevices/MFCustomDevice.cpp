@@ -18,11 +18,6 @@ extern MFEEPROM MFeeprom;
     The custom type is "MyCustomDevice", which means 14 characters plus NULL = 15
     The configuration is "myConfig", which means 8 characters plus NULL = 9
     The maximum characters to be expected is 18, so MEMLEN_STRING_BUFFER has to be at least 18
-
-    For the KAV displays:
-    3 Pins = 9
-    "KAV_EFIS" / "KAV_FCU" = 9
-    no config = 0
 ********************************************************************************** */
 
 #define MEMLEN_STRING_BUFFER 20
@@ -75,11 +70,17 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
     getStringFromEEPROM(adrType, parameter);
     if (strcmp(parameter, "KAV_FCU") == 0)
         _customType = KAV_FCU;
-    else if (strcmp(parameter, "KAV_EFIS") == 0)
+    if (strcmp(parameter, "KAV_EFIS") == 0)
         _customType = KAV_EFIS;
-    else if (strcmp(parameter, "MOBIFLIGHT_GNC255") == 0)
+     if (strcmp(parameter, "KAV_BATTERY") == 0)
+        _customType = KAV_BATTERY;
+    if (strcmp(parameter, "KAV_RAD_TCAS") == 0)
+        _customType = KAV_RAD_TCAS;
+    if (strcmp(parameter, "KAV_RUDDER") == 0)
+        _customType = KAV_RUDDER;
+    if (strcmp(parameter, "MOBIFLIGHT_GNC255") == 0)
         _customType = MOBIFLIGHT_GNC255;
-    else if (strcmp(parameter, "MOBIFLIGHT_GENERICI2C") == 0)
+    if (strcmp(parameter, "MOBIFLIGHT_GENERICI2C") == 0)
         _customType = MOBIFLIGHT_GENERICI2C;
 
     if (_customType == KAV_FCU) {
@@ -135,6 +136,105 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         _EFIS_LCD     = new (allocateMemory(sizeof(KAV_A3XX_EFIS_LCD))) KAV_A3XX_EFIS_LCD(_pin2, _pin3, _pin1);
         _EFIS_LCD->attach(_pin2, _pin3, _pin1);
 
+        _initialized = true;
+    }  else if (_customType == KAV_BATTERY) {
+        /* **********************************************************************************
+            Check if the device fits into the device buffer
+        ********************************************************************************** */
+        if (!FitInMemory(sizeof(KAV_A3XX_BATTERY_LCD))) {
+            // Error Message to Connector
+            cmdMessenger.sendCmd(kStatus, F("BATTERY LCD does not fit in Memory"));
+            return;
+        }
+
+        /* **********************************************************************************************
+            Read the pins from the EEPROM, copy them into a buffer
+            If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
+        ********************************************************************************************** */
+        getStringFromEEPROM(adrPin, parameter);
+        /* **********************************************************************************************
+            split the pins up into single pins. As the number of pins could be different between
+            multiple devices, it is done here.
+        ********************************************************************************************** */
+        params = strtok_r(parameter, "|", &p);
+        uint8_t _pin1  = atoi(params);
+        params = strtok_r(NULL, "|", &p);
+        uint8_t _pin2  = atoi(params);
+        params = strtok_r(NULL, "|", &p);
+        uint8_t _pin3  = atoi(params);
+
+        /* **********************************************************************************
+            Next call the constructor of your custom device
+            adapt it to the needs of your constructor
+        ********************************************************************************** */
+        _BATTERY_LCD = new (allocateMemory(sizeof(KAV_A3XX_BATTERY_LCD))) KAV_A3XX_BATTERY_LCD(_pin2, _pin3, _pin1);
+        _BATTERY_LCD->attach(_pin2, _pin3, _pin1);
+        _initialized = true;
+    } else if (_customType == KAV_RAD_TCAS) {
+        /* **********************************************************************************
+            Check if the device fits into the device buffer
+        ********************************************************************************** */
+        if (!FitInMemory(sizeof(KAV_A3XX_RAD_TCAS_LCD))) {
+            // Error Message to Connector
+            cmdMessenger.sendCmd(kStatus, F("RAD/TCAS LCD does not fit in Memory"));
+            return;
+        }
+
+        /* **********************************************************************************************
+            Read the pins from the EEPROM, copy them into a buffer
+            If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
+        ********************************************************************************************** */
+        getStringFromEEPROM(adrPin, parameter);
+        /* **********************************************************************************************
+            split the pins up into single pins. As the number of pins could be different between
+            multiple devices, it is done here.
+        ********************************************************************************************** */
+        params = strtok_r(parameter, "|", &p);
+        uint8_t _pin1  = atoi(params);
+        params = strtok_r(NULL, "|", &p);
+        uint8_t _pin2  = atoi(params);
+        params = strtok_r(NULL, "|", &p);
+        uint8_t _pin3  = atoi(params);
+
+        /* **********************************************************************************
+            Next call the constructor of your custom device
+            adapt it to the needs of your constructor
+        ********************************************************************************** */
+        _RAD_TCAS_LCD = new (allocateMemory(sizeof(KAV_A3XX_RAD_TCAS_LCD))) KAV_A3XX_RAD_TCAS_LCD(_pin2, _pin3, _pin1);
+        _RAD_TCAS_LCD->attach(_pin2, _pin3, _pin1);
+        _initialized = true;
+    } else if (_customType == KAV_RUDDER) {
+        /* **********************************************************************************
+            Check if the device fits into the device buffer
+        ********************************************************************************** */
+        if (!FitInMemory(sizeof(KAV_A3XX_RUDDER_LCD))) {
+            // Error Message to Connector
+            cmdMessenger.sendCmd(kStatus, F("Rudder LCD does not fit in Memory"));
+            return;
+        }
+
+        /* **********************************************************************************************
+            Read the pins from the EEPROM, copy them into a buffer
+            If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
+        ********************************************************************************************** */
+        getStringFromEEPROM(adrPin, parameter);
+        /* **********************************************************************************************
+            split the pins up into single pins. As the number of pins could be different between
+            multiple devices, it is done here.
+        ********************************************************************************************** */
+        params = strtok_r(parameter, "|", &p);
+        uint8_t _pin1  = atoi(params);
+        params = strtok_r(NULL, "|", &p);
+        uint8_t _pin2  = atoi(params);
+        params = strtok_r(NULL, "|", &p);
+        uint8_t _pin3  = atoi(params);
+
+        /* **********************************************************************************
+            Next call the constructor of your custom device
+            adapt it to the needs of your constructor
+        ********************************************************************************** */
+        _RUDDER_LCD = new (allocateMemory(sizeof(KAV_A3XX_RUDDER_LCD))) KAV_A3XX_RUDDER_LCD(_pin2, _pin3, _pin1);
+        _RUDDER_LCD->attach(_pin2, _pin3, _pin1);
         _initialized = true;
     } else if (_customType == MOBIFLIGHT_GNC255) {
         /* **********************************************************************************

@@ -44,6 +44,9 @@
     "CustomDeviceTypes": [
       "KAV_EFIS",
       "KAV_FCU",
+      "KAV_BATTERY",
+      "KAV_RAD_TCAS",
+      "KAV_RUDDER",
       "MOBIFLIGHT_GNC255",
       "MOBIFLIGHT_4TM1637",
       "MOBIFLIGHT_6TM1637",
