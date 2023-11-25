@@ -25,7 +25,10 @@
       "ResetFirmwareFile": "reset.raspberry_pico_flash_nuke.uf2",
       "CustomDeviceTypes": [
         "KAV_EFIS",
-        "KAV_FCU"
+        "KAV_FCU",
+        "KAV_BATTERY",
+        "KAV_RAD_TCAS",
+        "KAV_RUDDER"
       ]
     },
     "ModuleLimits": {
