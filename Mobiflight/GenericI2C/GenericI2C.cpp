@@ -1,14 +1,13 @@
 #include "GenericI2C.h"
 #include <Wire.h>
 
-#define END_OF_I2C_MESSAGE              0x00
-#define END_OF_I2C_COMMAND              0x0D        // carriage return in ASCII
-#define END_OF_I2C_PARTIAL_MESSAGE      0x0A        // line feed in ASCII
-#define SEND_MAX_I2C_BYTES              30          // mega has only 32 bytes buffer for receiving via I2C, keep one for additional message marker and one for stop message
-
-#if defined(ARDUINO_ARCH_RP2040)
-  #define BUFFER_LENGTH                 WIRE_BUFFER_SIZE
-#endif
+#define END_OF_I2C_PAYLOAD              0x00
+#define END_OF_I2C_MESSAGE_ID           0x0D
+#define END_OF_I2C_PARTIAL_MESSAGE      0x0A
+// mega has only 32 bytes buffer for receiving via I2C
+// so limit the maximal number of bytes
+// keep one for additional message marker and one for stop message
+#define SEND_MAX_I2C_BYTES              30
 
 GenericI2C::GenericI2C(uint8_t addrI2C)
 {
@@ -51,19 +50,27 @@ void GenericI2C::set(int16_t messageID, char *setPoint)
     itoa(messageID, buffer, 10);
     Wire.beginTransmission(_addrI2C);
     Wire.print(buffer);
-    Wire.write(END_OF_I2C_COMMAND);                                     // send a CR to mark end of command
-    countI2C = strlen(buffer) + 1;                                      // count already transferred bytes incl. end of command marker
+    // send a marker for end of messageID
+    Wire.write(END_OF_I2C_MESSAGE_ID);
+    // count already transferred bytes incl. marker for end of messageID
+    countI2C = strlen(buffer) + 1;
     while (countChar < strlen(setPoint)) {
         Wire.write(setPoint[countChar++]);
         countI2C++;
-        if (countI2C >= SEND_MAX_I2C_BYTES) {							// if buffer will be exceeded on next characater, keep one byte for end of message marker
-            Wire.write(END_OF_I2C_PARTIAL_MESSAGE);                     // send a LF for next part of message
-			Wire.endTransmission();								        // write buffer to I2C display
-			Wire.beginTransmission(_addrI2C);							// and prepare a new transmission
-			countI2C = 0;												// start new Byte counting
+        // if buffer will be exceeded on next characater, keep one byte for end of message marker
+        if (countI2C >= SEND_MAX_I2C_BYTES) {
+            // send a marker for next part of message
+            Wire.write(END_OF_I2C_PARTIAL_MESSAGE);
+			// write buffer to I2C display
+            Wire.endTransmission();
+			// and prepare a new transmission
+            Wire.beginTransmission(_addrI2C);
+			// start new Byte counting
+            countI2C = 0;
 		}
     }
-    Wire.write(END_OF_I2C_MESSAGE);                                     // send a NULL to mark end of messageID
+    // send a NULL to mark end of messageID
+    Wire.write(END_OF_I2C_PAYLOAD);
     Wire.endTransmission();
 }
 

@@ -1,15 +1,15 @@
 #include "I2C_slave.h"
 #include "Wire.h"
 
-#define END_OF_I2C_MESSAGE              0x00
-#define END_OF_I2C_COMMAND              0x0D      // carriage return in ASCII
-#define END_OF_I2C_PARTIAL_MESSAGE      0x0A      // line feed in ASCII
+#define END_OF_I2C_PAYLOAD              0x00
+#define END_OF_I2C_MESSAGE_ID           0x0D
+#define END_OF_I2C_PARTIAL_MESSAGE      0x0A
 
 
 enum {
     NOT_SYNCHRONIZED = 0,
-    RECEIVE_COMMAND,
-    RECEIVE_DATA
+    RECEIVE_MESSAGE_ID,
+    RECEIVE_PAYLOAD
 };
 
 int16_t _messageID = 0;
@@ -47,43 +47,53 @@ int16_t I2C_slave::getMessage(char* message) {
 void onReceiveI2C(int received_bytes) {
 
   static uint8_t byte_counter = 0;
-  static uint8_t state = RECEIVE_COMMAND;
-  char buffer[7] = {0};                                    // range is -32768 ... 32767 -> max. 6 character plus terminating NULL
+  static uint8_t state = RECEIVE_MESSAGE_ID;
+  // range is -32768 ... 32767 -> max. 6 character plus terminating NULL
+  char buffer[7] = {0};
 
   for (uint8_t i = 0; i < received_bytes; i++) {
     switch (state) {
     case NOT_SYNCHRONIZED:
-      if (Wire.read() == END_OF_I2C_MESSAGE) {              // wait for end of message to get synchronized
-        state = RECEIVE_COMMAND;
+      // wait for end of message to get synchronized
+      if (Wire.read() == END_OF_I2C_PAYLOAD) {
+        state = RECEIVE_MESSAGE_ID;
         byte_counter = 0;
       }
       break;
 
-    case RECEIVE_COMMAND:
+    case RECEIVE_MESSAGE_ID:
       buffer[i] = Wire.read();
-      if (buffer[i] == END_OF_I2C_COMMAND) {
-        buffer[i] = 0x00;                                   // terminate string
+      if (buffer[i] == END_OF_I2C_MESSAGE_ID) {
+        // terminate string
+        buffer[i] = 0x00;
         _messageID = atoi(buffer);
-        state = RECEIVE_DATA;                               // next bytes are Data Bytes
+        // next bytes are Data Bytes
+        state = RECEIVE_PAYLOAD;
       }
-      if (i >= 6) {                                         // buffer overflow for messageID
-        state = NOT_SYNCHRONIZED;                           // something went wrong, get a new synchronization
+      // buffer overflow for messageID
+      if (i >= 6) {
+        // something went wrong, get a new synchronization
+        state = NOT_SYNCHRONIZED;
         byte_counter = 0;
         return;
       }
       break;
 
-    case RECEIVE_DATA:
+    case RECEIVE_PAYLOAD:
       _message[byte_counter] = Wire.read();
-      if (_message[byte_counter] == END_OF_I2C_MESSAGE) {    // end of message detected, prepare for receiving next messageID
+      // end of message detected, prepare for receiving next messageID
+      if (_message[byte_counter] == END_OF_I2C_PAYLOAD) {
         byte_counter = 0;
-        state = RECEIVE_COMMAND;
+        state = RECEIVE_MESSAGE_ID;
         _message_received = true;
         return;
-      } else if(_message[byte_counter] == END_OF_I2C_PARTIAL_MESSAGE) {   // end of partial message detected, next transmission will be rest of message  
-        return;                                             // keep receiving data
+      } else if(_message[byte_counter] == END_OF_I2C_PARTIAL_MESSAGE) {
+        // end of partial message detected, next transmission will be rest of message
+        // so keep receiving data
+        return;
       } else {
-        byte_counter++;                                     // get the next byte
+        // get the next byte
+        byte_counter++;
       }
       break;
 
@@ -91,5 +101,6 @@ void onReceiveI2C(int received_bytes) {
       break;
     }
   }
-  state = NOT_SYNCHRONIZED;                                 // We shouldn't come here, something went wrong
+  // We shouldn't come here, something went wrong
+  state = NOT_SYNCHRONIZED;
 }
