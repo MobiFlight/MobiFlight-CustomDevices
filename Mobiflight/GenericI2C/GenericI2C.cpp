@@ -33,10 +33,10 @@ void GenericI2C::detach()
 }
 
 
-void GenericI2C::set(int16_t messageID, char *setPoint)
+void GenericI2C::set(int16_t messageID, char *message)
 {
     /* **********************************************************************************
-        MessageID and setpoint will be send via I2C
+        MessageID and message will be send via I2C
         For AVR's the I2C buffer is only 32 bytes, so message gets spilt up if exceeding
         max. length of a message could be 96 bytes due to limitation from the CMDmessenger
         Important Remark!
@@ -54,8 +54,8 @@ void GenericI2C::set(int16_t messageID, char *setPoint)
     Wire.write(END_OF_I2C_MESSAGE_ID);
     // count already transferred bytes incl. marker for end of messageID
     countI2C = strlen(buffer) + 1;
-    while (countChar < strlen(setPoint)) {
-        Wire.write(setPoint[countChar++]);
+    while (countChar < strlen(message)) {
+        Wire.write(message[countChar++]);
         countI2C++;
         // if buffer will be exceeded on next characater, keep one byte for end of message marker
         if (countI2C >= SEND_MAX_I2C_BYTES) {
