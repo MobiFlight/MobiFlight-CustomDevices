@@ -33,11 +33,11 @@ void GenericI2C::detach()
 }
 
 
-void GenericI2C::set(int16_t messageID, char *message)
+void GenericI2C::set(int16_t messageID, char *payload)
 {
     /* **********************************************************************************
-        MessageID and message will be send via I2C
-        For AVR's the I2C buffer is only 32 bytes, so message gets spilt up if exceeding
+        MessageID and payload will be send via I2C
+        For AVR's the I2C buffer is only 32 bytes, so the complete message gets spilt up if exceeding
         max. length of a message could be 96 bytes due to limitation from the CMDmessenger
         Important Remark!
         MessageID == -1 will be send from the connector when Mobiflight is closed
@@ -54,12 +54,12 @@ void GenericI2C::set(int16_t messageID, char *message)
     Wire.write(END_OF_I2C_MESSAGE_ID);
     // count already transferred bytes incl. marker for end of messageID
     countI2C = strlen(buffer) + 1;
-    while (countChar < strlen(message)) {
-        Wire.write(message[countChar++]);
+    while (countChar < strlen(payload)) {
+        Wire.write(payload[countChar++]);
         countI2C++;
-        // if buffer will be exceeded on next characater, keep one byte for end of message marker
+        // if buffer will be exceeded on next characater
         if (countI2C >= SEND_MAX_I2C_BYTES) {
-            // send a marker for next part of message
+            // send a marker for next part of payload
             Wire.write(END_OF_I2C_PARTIAL_MESSAGE);
 			// write buffer to I2C display
             Wire.endTransmission();
