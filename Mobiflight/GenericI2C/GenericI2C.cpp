@@ -61,13 +61,13 @@ void GenericI2C::set(int16_t messageID, char *payload)
         if (countI2C >= SEND_MAX_I2C_BYTES) {
             // send a marker for next part of payload
             Wire.write(END_OF_I2C_PARTIAL_MESSAGE);
-			// write buffer to I2C display
+            // write buffer to I2C display
             Wire.endTransmission();
-			// and prepare a new transmission
+            // and prepare a new transmission
             Wire.beginTransmission(_addrI2C);
-			// start new Byte counting
+            // start new Byte counting
             countI2C = 0;
-		}
+        }
     }
     // send a NULL to mark end of messageID
     Wire.write(END_OF_I2C_PAYLOAD);
