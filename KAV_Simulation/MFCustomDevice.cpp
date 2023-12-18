@@ -259,11 +259,16 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
 void MFCustomDevice::detach()
 {
     _initialized = false;
-    if (_lcdType == KAV_FCU) {
+    if (_lcdType == KAV_FCU)
         _FCU_LCD->detach();
-    } else if (_lcdType == KAV_EFIS) {
+    else if (_lcdType == KAV_EFIS)
         _EFIS_LCD->detach();
-    }
+    else if (_lcdType == KAV_BATTERY)
+        _BATTERY_LCD->detach();
+    else if (_lcdType == KAV_RAD_TCAS)
+        _RAD_TCAS_LCD->detach();
+    else if (_lcdType == KAV_RUDDER)
+        _RUDDER_LCD->detach();
 }
 
 /* **********************************************************************************
@@ -297,4 +302,10 @@ void MFCustomDevice::set(int16_t messageID, char *setPoint)
         _FCU_LCD->set(messageID, setPoint);
     else if (_lcdType == KAV_EFIS)
         _EFIS_LCD->set(messageID, setPoint);
+    else if (_lcdType == KAV_BATTERY) 
+        _BATTERY_LCD->set(messageID, setPoint);
+    else if (_lcdType == KAV_RAD_TCAS)
+        _RAD_TCAS_LCD->set(messageID, setPoint);
+    else if (_lcdType == KAV_RUDDER)
+        _RUDDER_LCD->set(messageID, setPoint);
 }
