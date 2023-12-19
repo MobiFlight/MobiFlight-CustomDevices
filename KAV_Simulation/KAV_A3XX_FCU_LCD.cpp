@@ -402,7 +402,8 @@ void KAV_A3XX_FCU_LCD::displayDigit(uint8_t address, uint8_t digit)
 
 void KAV_A3XX_FCU_LCD::set(int16_t messageID, char *setPoint)
 {
-    uint32_t data = atoi(setPoint);
+    // int32_t data = atoi(setPoint); // This doesn't work for larger numbers. I.e., altitude.
+    int32_t data = strtoul(setPoint, NULL, 10);
     /* **********************************************************************************
         Each messageID has it's own value
         check for the messageID and define what to do.
