@@ -37,7 +37,7 @@
     "DelayAfterFirmwareUpdate": 0,
     "FirmwareBaseName": "all_custom_mega",
     "FirmwareExtension": "hex",
-    "LatestFirmwareVersion": "2.5.0",
+    "LatestFirmwareVersion": "1.0.0",
     "FriendlyName": "All customs Mega",
     "MobiFlightType": "All devices Mega",
     "ResetFirmwareFile": "reset.arduino_mega_1_0_2.hex",
