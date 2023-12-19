@@ -37,7 +37,7 @@
     "DelayAfterFirmwareUpdate": 0,
     "FirmwareBaseName": "mobiflight_gnc255_mega",
     "FirmwareExtension": "hex",
-    "LatestFirmwareVersion": "1.0.0",
+    "LatestFirmwareVersion": "0.1.0",
     "FriendlyName": "MobiFlight GNC255 Mega",
     "MobiFlightType": "MobiFlight GNC255 Mega",
     "ResetFirmwareFile": "reset.arduino_mega_1_0_2.hex",
