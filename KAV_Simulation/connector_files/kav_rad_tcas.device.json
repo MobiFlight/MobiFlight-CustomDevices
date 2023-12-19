@@ -17,11 +17,6 @@
     },
     "MessageTypes": [
       {
-        "id": -1,
-        "label": "Clear the LCD",
-        "description": "This will clear the LCD"
-      },
-      {
         "id": 0,
         "label": "Set dot",
         "description": "$ sets the dot to show or hide (0/1)"

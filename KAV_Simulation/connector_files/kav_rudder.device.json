@@ -17,11 +17,6 @@
     },
     "MessageTypes": [
       {
-        "id": -1,
-        "label": "Clear the LCD",
-        "description": "This will clear the LCD"
-      },
-      {
         "id": 0,
         "label": "Set 'L'",
         "description": "$ will set the first character to show 'L' or blank (0/1)"

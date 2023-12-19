@@ -17,11 +17,6 @@
     },
     "MessageTypes": [
       {
-        "id": -1,
-        "label": "Clear the LCD",
-        "description": "This will clear the LCD"
-      },
-      {
         "id": 0,
         "label": "Show Speed Value",
         "description": "$ will be displayed as Speed value"
