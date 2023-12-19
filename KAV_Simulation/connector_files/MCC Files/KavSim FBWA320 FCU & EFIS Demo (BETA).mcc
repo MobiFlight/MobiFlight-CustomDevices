@@ -8,15 +8,16 @@
         <source type="SimConnect" VarType="CODE" Value="(L:A32NX_AUTOPILOT_SPEED_SELECTED)" UUID="75c16739-da7d-4cfb-aad1-c4607104321e" />
         <test type="String" value="1" />
         <modifiers>
-          <transformation active="False" expression="$" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="0" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="0" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="e6ff34ad-9a39-4bf4-83cd-ea818057dc42" operand="!=" value="1" logic="and" />
           <precondition type="config" active="true" ref="48b1ea69-194d-49e9-892b-af6c3eef5e54" operand="&gt;" value="100" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="48b1ea69-194d-49e9-892b-af6c3eef5e54">
@@ -27,48 +28,16 @@
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="Round($*100, 0)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="1" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="1" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="e6ff34ad-9a39-4bf4-83cd-ea818057dc42" operand="!=" value="1" logic="and" />
           <precondition type="config" active="true" ref="bb9fc77e-8eca-4508-9d91-de808b27b4d5" operand="&lt;" value="1" logic="and" />
         </preconditions>
-        <configrefs />
-      </settings>
-    </config>
-    <config guid="5cb3302c-a104-4fd7-ab02-b6b49bf5d33b">
-      <active>true</active>
-      <description>FCU - SPD Label</description>
-      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <source type="SimConnect" VarType="CODE" Value="(A:AUTOPILOT MANAGED SPEED IN MACH, Bool)" UUID="78680274-52ae-42d1-a0d9-e4b5df50e582" />
-        <test type="Float" value="1" />
-        <modifiers>
-          <transformation active="True" expression="if($=0, 1, 0)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
-        </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="14" value="$" />
-        <preconditions>
-          <precondition type="config" active="true" ref="bb9fc77e-8eca-4508-9d91-de808b27b4d5" operand="=" value="-1" logic="and" />
-        </preconditions>
-        <configrefs />
-      </settings>
-    </config>
-    <config guid="d5474f7c-7c7a-46b1-9828-e0fa990ab164">
-      <active>true</active>
-      <description>FCU - MACH Label</description>
-      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <source type="SimConnect" VarType="CODE" Value="(A:AUTOPILOT MANAGED SPEED IN MACH, Bool)" UUID="78680274-52ae-42d1-a0d9-e4b5df50e582" />
-        <test type="Float" value="1" />
-        <modifiers>
-          <transformation active="False" expression="" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
-        </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="15" value="$" />
-        <preconditions>
-          <precondition type="config" active="true" ref="bb9fc77e-8eca-4508-9d91-de808b27b4d5" operand="=" value="-1" logic="and" />
-        </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="e6ff34ad-9a39-4bf4-83cd-ea818057dc42">
@@ -81,7 +50,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="6" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="6" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="bb9fc77e-8eca-4508-9d91-de808b27b4d5" operand="=" value="-1" logic="and" />
         </preconditions>
@@ -98,7 +67,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="10" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="10" value="$" />
         <preconditions />
         <configrefs />
       </settings>
@@ -128,7 +97,7 @@
           <transformation active="True" expression="Round($, 0)" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="2" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="2" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="6f608be4-cce7-4d5d-adf9-24b60d578c57" operand="=" value="0" logic="and" />
         </preconditions>
@@ -145,7 +114,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="7" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="7" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="80e9ee8c-6b87-44af-9548-b030d8139d14" operand="=" value="1" logic="and" />
         </preconditions>
@@ -177,7 +146,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="11" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="11" value="$" />
         <preconditions />
         <configrefs />
       </settings>
@@ -192,7 +161,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="13" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="13" value="$" />
         <preconditions />
         <configrefs />
       </settings>
@@ -222,7 +191,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="3" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="3" value="$" />
         <preconditions />
         <configrefs />
       </settings>
@@ -237,7 +206,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="12" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="12" value="$" />
         <preconditions />
         <configrefs />
       </settings>
@@ -257,37 +226,24 @@
         <configrefs />
       </settings>
     </config>
-    <config guid="0a651a41-be29-4f92-994e-6e4c7aad3a4e">
-      <active>true</active>
-      <description>- Copy</description>
-      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <source type="SimConnect" VarType="CODE" Value="(L:A32NX_AUTOPILOT_VS_SELECTED)" UUID="8a256c5e-81a8-4989-9e26-7ed96b1b4073" />
-        <test type="Float" value="1" />
-        <modifiers>
-          <transformation active="False" expression="$" />
-          <comparison active="True" value="" operand="=" ifValue="1" elseValue="0" />
-        </modifiers>
-        <display type="-" serial="-" trigger="normal" pin="" pinBrightness="255" />
-        <preconditions />
-        <configrefs />
-      </settings>
-    </config>
     <config guid="284222fc-9b8d-4383-83a0-e13a718e0e90">
       <active>true</active>
       <description>FCU - VS Value</description>
       <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
         <source type="SimConnect" VarType="CODE" Value="(L:A32NX_AUTOPILOT_VS_SELECTED)" UUID="95da7f82-145a-48fe-904b-f668dd42880d" />
-        <test type="Float" value="1" />
+        <test type="Float" value="-1.01" />
         <modifiers>
-          <transformation active="False" expression="$" />
-          <comparison active="False" value="0" operand="=" ifValue="1" elseValue="$" />
+          <comparison active="True" value="0" operand="=" ifValue="1" elseValue="$" />
+          <transformation active="True" expression="if($&gt;0, $+(#/10), $+(-#/10))" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="4" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="4" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="5c5ddbfc-d1db-48f0-bc2e-d668b0882c47" operand="=" value="0" logic="and" />
           <precondition type="config" active="true" ref="ac4a3707-edb9-43d0-8888-8528cc9bc9e7" operand="=" value="0" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="d439076e-a7a5-47b0-aed1-945a4d82156c">
@@ -298,14 +254,16 @@
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="Round($*10, 0)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="if($&gt;0, $+(#/10), $+(-#/10))" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="5" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="5" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="5c5ddbfc-d1db-48f0-bc2e-d668b0882c47" operand="=" value="1" logic="and" />
           <precondition type="config" active="true" ref="ac4a3707-edb9-43d0-8888-8528cc9bc9e7" operand="=" value="0" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="ac4a3707-edb9-43d0-8888-8528cc9bc9e7">
@@ -318,7 +276,7 @@
           <transformation active="False" expression="$" />
           <comparison active="False" value="" operand="" ifValue="" elseValue="" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="FCU LCD" messageType="9" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="FCU LCD" messageType="9" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="b052808c-9b7b-459e-9b63-322d2ece57ff" operand="=" value="1" logic="and" />
         </preconditions>
@@ -378,13 +336,15 @@
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="if($&lt;100, Round($, 2)*100, $)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="EFIS L" messageType="0" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="EFIS L" messageType="0" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" operand="=" value="1" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="27cca4b2-6234-47ec-8cd4-5d170b07d2ef">
@@ -395,30 +355,34 @@
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="if($&lt;100, Round($, 2)*100, $)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="EFIS L" messageType="1" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="EFIS L" messageType="1" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" operand="=" value="0" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="44a6944c-e04e-426a-8f9c-38ef03ae7b19">
       <active>true</active>
       <description>EFIS L - STD</description>
       <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <source type="SimConnect" VarType="CODE" Value="" UUID="-" />
+        <source type="SimConnect" VarType="LVAR" Value="" />
         <test type="Float" value="1" />
         <modifiers>
-          <transformation active="True" expression="$=if(#&gt;=2,0,1)" />
+          <transformation active="True" expression="if(C&gt;=2,1,0)" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="EFIS L" messageType="2" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="EFIS L" messageType="2" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" operand="&gt;=" value="2" logic="and" />
         </preconditions>
         <configrefs>
-          <configref active="True" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" placeholder="#" />
+          <configref active="True" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" placeholder="C" />
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
         </configrefs>
       </settings>
     </config>
@@ -460,13 +424,15 @@
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="if($&lt;100, Round($, 2)*100, $)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="EFIS R" messageType="0" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="EFIS R" messageType="0" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="514dfa61-d012-4679-9066-bd67fad44972" operand="=" value="1" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="0e6d7587-0fa9-4dc9-8b41-c08f45c5e6b1">
@@ -477,13 +443,15 @@
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="if($&lt;100, Round($, 2)*100, $)" />
-          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="EFIS R" messageType="1" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="EFIS R" messageType="1" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="514dfa61-d012-4679-9066-bd67fad44972" operand="=" value="0" logic="and" />
         </preconditions>
-        <configrefs />
+        <configrefs>
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
       </settings>
     </config>
     <config guid="5967b60e-2f1a-48c2-8b32-7f43e48a11b1">
@@ -493,15 +461,43 @@
         <source type="SimConnect" VarType="CODE" Value="(L:XMLVAR_Baro1_Mode) " UUID="8dae80d7-fb20-471a-bd6e-9c6f135353ad" />
         <test type="Float" value="1" />
         <modifiers>
-          <transformation active="True" expression="$=if(#&gt;=2,0,1)" />
+          <transformation active="True" expression="if(C&gt;=2,1,0)" />
+          <transformation active="True" expression="$+#" />
         </modifiers>
-        <display type="CustomDevice" serial="Kav Mega/ SN-3GC-D38" trigger="normal" customType="" customName="EFIS R" messageType="2" value="$" />
+        <display type="CustomDevice" serial="Kav Mega/ SN-241-3E2" trigger="normal" customType="" customName="EFIS R" messageType="2" value="$" />
         <preconditions>
           <precondition type="config" active="true" ref="514dfa61-d012-4679-9066-bd67fad44972" operand="&gt;=" value="2" logic="and" />
         </preconditions>
         <configrefs>
-          <configref active="True" ref="514dfa61-d012-4679-9066-bd67fad44972" placeholder="#" />
+          <configref active="True" ref="514dfa61-d012-4679-9066-bd67fad44972" placeholder="C" />
+          <configref active="True" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
         </configrefs>
+      </settings>
+    </config>
+    <config guid="3a6915ed-faf9-43e1-a262-6a51e64156cd">
+      <active>false</active>
+      <description>-</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="LVAR" Value="" />
+        <test type="Float" value="1" />
+        <modifiers />
+        <display type="-" serial="-" trigger="normal" pin="" pinBrightness="255" />
+        <preconditions />
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a">
+      <active>true</active>
+      <description>Refresh Blink</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:A32NX_EFIS_L_OPTION)" UUID="a2a19933-8739-4090-bd7e-ebebbbcc334f" />
+        <test type="Float" value="1" />
+        <modifiers>
+          <blink active="True" blinkValue="0.1" onOffSequence="50,50" />
+        </modifiers>
+        <display type="-" serial="Kav Mega/ SN-241-3E2" trigger="normal" pin="" pinBrightness="255" />
+        <preconditions />
+        <configrefs />
       </settings>
     </config>
   </outputs>
