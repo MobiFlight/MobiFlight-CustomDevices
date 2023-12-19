@@ -17,6 +17,11 @@
     },
     "MessageTypes": [
       {
+        "id": -1,
+        "label": "Clear the LCD",
+        "description": "This will clear the LCD"
+      },
+      {
         "id": 0,
         "label": "Set volt symbol",
         "description": "$ will set the volt symbol (0/1)"

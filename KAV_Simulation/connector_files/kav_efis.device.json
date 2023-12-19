@@ -17,6 +17,11 @@
     },
     "MessageTypes": [
       {
+        "id": -1,
+        "label": "Clear the LCD",
+        "description": "This will clear the LCD"
+      },
+      {
         "id": 0,
         "label": "Show QNH Value",
         "description": "$ will be displayed as QNH value"
