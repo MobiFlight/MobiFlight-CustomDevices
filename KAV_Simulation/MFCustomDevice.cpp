@@ -266,7 +266,7 @@ void MFCustomDevice::detach()
     else if (_lcdType == KAV_BATTERY)
         _BATTERY_LCD->detach();
     else if (_lcdType == KAV_RAD_TCAS)
-         _RAD_TCAS_LCD->detach();
+        _RAD_TCAS_LCD->detach();
     else if (_lcdType == KAV_RUDDER)
         _RUDDER_LCD->detach();
 }

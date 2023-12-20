@@ -20,12 +20,12 @@
       "FirmwareBaseName": "kav_raspberrypico",
       "FirmwareExtension": "uf2",
       "FriendlyName": "Kav RaspiPico",
-      "LatestFirmwareVersion": "2.5.0",
+      "LatestFirmwareVersion": "2.5.1",
       "MobiFlightType": "Kav RaspiPico",
       "ResetFirmwareFile": "reset.raspberry_pico_flash_nuke.uf2",
       "CustomDeviceTypes": [
-        "KAV_EFIS",
         "KAV_FCU",
+        "KAV_EFIS",
         "KAV_BATTERY",
         "KAV_RAD_TCAS",
         "KAV_RUDDER"
@@ -43,7 +43,7 @@
       "MaxShifters": 6,
       "MaxSteppers": 6,
       "MaxInputMultiplexer": 6,
-      "MaxCustomDevices": 5
+      "MaxCustomDevices": 6
     },
     "Pins": [
       {

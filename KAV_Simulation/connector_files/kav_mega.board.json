@@ -37,13 +37,13 @@
     "DelayAfterFirmwareUpdate": 0,
     "FirmwareBaseName": "kav_mega",
     "FirmwareExtension": "hex",
-    "LatestFirmwareVersion": "2.5.0",
+    "LatestFirmwareVersion": "2.5.1",
     "FriendlyName": "Kav Mega",
     "MobiFlightType": "Kav Mega",
     "ResetFirmwareFile": "reset.arduino_mega_1_0_2.hex",
     "CustomDeviceTypes": [
-      "KAV_EFIS",
       "KAV_FCU",
+      "KAV_EFIS",
       "KAV_BATTERY",
       "KAV_RAD_TCAS",
       "KAV_RUDDER"
@@ -61,7 +61,7 @@
     "MaxShifters": 6,
     "MaxSteppers": 10,
     "MaxInputMultiplexer": 6,
-    "MaxCustomDevices": 5
+    "MaxCustomDevices": 6
   },
   "Pins": [
     {

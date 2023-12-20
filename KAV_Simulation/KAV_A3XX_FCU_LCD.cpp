@@ -400,9 +400,18 @@ void KAV_A3XX_FCU_LCD::displayDigit(uint8_t address, uint8_t digit)
     refreshLCD(address);
 }
 
+void KAV_A3XX_FCU_LCD::clearOrReset(bool enabled)
+{
+    if (enabled)
+        setStartLabels();
+    else
+        clearLCD();
+}
+
 void KAV_A3XX_FCU_LCD::set(int16_t messageID, char *setPoint)
 {
-    int32_t data = atoi(setPoint);
+    // int32_t data = atoi(setPoint); // This doesn't work for larger numbers. I.e., altitude.
+    int32_t data = strtoul(setPoint, NULL, 10);
     /* **********************************************************************************
         Each messageID has it's own value
         check for the messageID and define what to do.
@@ -450,4 +459,6 @@ void KAV_A3XX_FCU_LCD::set(int16_t messageID, char *setPoint)
         setMachLabel((int8_t)data);
     else if (messageID == 16)
         showSpeedValue((uint16_t)data);
+    else if (messageID == 17)
+        clearOrReset((int8_t)data);
 }
