@@ -70,7 +70,7 @@ void MFCustomDevice::attach(int16_t adrPin, uint16_t adrType, uint16_t adrConfig
         is used to store the type
     ********************************************************************************************** */
     getStringFromEEPROM(adrType, parameter);
-    if (strcmp(parameter, "MOBIFLIGHT_GNC255") == 1) {
+    if (strcmp(parameter, "MOBIFLIGHT_GNC255") != 0) {
         cmdMessenger.sendCmd(kStatus, F("Custom Device is not supported by this firmware version"));
         return;
     }
