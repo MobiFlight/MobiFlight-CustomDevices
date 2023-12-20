@@ -126,18 +126,29 @@ void KAV_A3XX_RAD_TCAS_LCD::setAllDots(bool enabled)
  */
 void KAV_A3XX_RAD_TCAS_LCD::setRadioValue(uint32_t value)
 {
-    if (value > 999999)
-        value = 999999;
-    displayDigit(DIGIT_SIX, (value % 10));
-    value = value / 10;
-    displayDigit(DIGIT_FIVE, (value % 10));
-    value = value / 10;
-    displayDigit(DIGIT_FOUR, (value % 10));
-    value = value / 10;
-    displayDigit(DIGIT_THREE, (value % 10));
-    value = value / 10;
-    displayDigit(DIGIT_TWO, (value % 10));
-    displayDigit(DIGIT_ONE, (value / 10));
+    // TODO: Add a condition that if 0, then show 'data' on the display, then break.
+    if (value == 0)
+    {
+        displayDigit(DIGIT_ONE, 11);
+        displayDigit(DIGIT_TWO, 13);
+        displayDigit(DIGIT_THREE, 14);
+        displayDigit(DIGIT_FOUR, 15);
+        displayDigit(DIGIT_FIVE, 14);
+        displayDigit(DIGIT_SIX, 11);
+    } else {
+        if (value > 999999)
+            value = 999999;
+        displayDigit(DIGIT_SIX, (value % 10));
+        value = value / 10;
+        displayDigit(DIGIT_FIVE, (value % 10));
+        value = value / 10;
+        displayDigit(DIGIT_FOUR, (value % 10));
+        value = value / 10;
+        displayDigit(DIGIT_THREE, (value % 10));
+        value = value / 10;
+        displayDigit(DIGIT_TWO, (value % 10));
+        displayDigit(DIGIT_ONE, (value / 10));
+    }
 }
 
 /**
@@ -164,9 +175,11 @@ void KAV_A3XX_RAD_TCAS_LCD::setTcasValue(uint16_t value)
  */
 void KAV_A3XX_RAD_TCAS_LCD::showRadio(uint32_t value)
 {
-    // TODO: Add a condition that if 0, then show 'data' on the display, then break.
     setRadioValue(value);
-    setRadioDot(true);
+    if (value == 0)
+        setRadioDot(false);
+    else
+        setRadioDot(true);
 }
 
 /**
@@ -203,7 +216,7 @@ void KAV_A3XX_RAD_TCAS_LCD::showTest(bool enabled)
 /**
  * A list of the binary patterns to show different characters on the LCD.
  */
-uint8_t digitPatternRadTcas[13] = {
+uint8_t digitPatternRadTcas[16] = {
     0b11101011, // 0
     0b01100000, // 1
     0b11000111, // 2
@@ -217,6 +230,10 @@ uint8_t digitPatternRadTcas[13] = {
     0b00000100, // -
     0b00000000, // blank
     0b11001100, // small 0 (For V/S)
+    // Below are characters for 'dAtA'
+    0b01100111, // d
+    0b11101110, // A
+    0b00001111, // t
 };
 
 /**
@@ -228,7 +245,7 @@ uint8_t digitPatternRadTcas[13] = {
 void KAV_A3XX_RAD_TCAS_LCD::displayDigit(uint8_t address, uint8_t digit)
 {
     // This ensures that anything over 12 is turned to 'blank', and as it's unsigned, anything less than 0 will become 255, and therefore, 'blank'.
-    if (digit > 12)
+    if (digit > 15)
         digit = 11;
 
     buffer[address] = digitPatternRadTcas[digit];
@@ -265,7 +282,7 @@ void KAV_A3XX_RAD_TCAS_LCD::set(int16_t messageID, char *setPoint)
     else if (messageID == 1)
         setAllDots((uint16_t)data);
     else if (messageID == 2)
-        showRadio((uint16_t)data);
+        showRadio((uint32_t)data);
     else if (messageID == 3)
         showTcas((uint16_t)data);
 }
