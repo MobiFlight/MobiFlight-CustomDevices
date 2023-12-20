@@ -164,6 +164,7 @@ void KAV_A3XX_RAD_TCAS_LCD::setTcasValue(uint16_t value)
  */
 void KAV_A3XX_RAD_TCAS_LCD::showRadio(uint32_t value)
 {
+    // TODO: Add a condition that if 0, then show 'data' on the display, then break.
     setRadioValue(value);
     setRadioDot(true);
 }
@@ -245,7 +246,7 @@ void KAV_A3XX_RAD_TCAS_LCD::displayDigit(uint8_t address, uint8_t digit)
  */
 void KAV_A3XX_RAD_TCAS_LCD::set(int16_t messageID, char *setPoint)
 {
-    int32_t data = atoi(setPoint);
+    int32_t data = strtoul(setPoint, NULL, 10);
     /* **********************************************************************************
         Each messageID has it's own value
         check for the messageID and define what to do.

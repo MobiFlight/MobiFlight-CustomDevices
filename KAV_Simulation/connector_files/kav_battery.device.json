@@ -38,8 +38,8 @@
       },
       {
         "id": 3,
-        "label": "Set value w/ L",
-        "description": "$ will set the value of the LCD with 'L' character anabled"
+        "label": "Set value w/ V",
+        "description": "$ will set the value of the LCD with 'V' character anabled"
       }
     ]
   }
