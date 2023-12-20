@@ -42,8 +42,8 @@
     "MobiFlightType": "Kav Mega",
     "ResetFirmwareFile": "reset.arduino_mega_1_0_2.hex",
     "CustomDeviceTypes": [
-      "KAV_EFIS",
       "KAV_FCU",
+      "KAV_EFIS",
       "KAV_BATTERY",
       "KAV_RAD_TCAS",
       "KAV_RUDDER"

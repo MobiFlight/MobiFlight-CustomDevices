@@ -17,11 +17,6 @@
     },
     "MessageTypes": [
       {
-        "id": -1,
-        "label": "Clear display",
-        "description": "will clear the display"
-      },
-      {
         "id": 0,
         "label": "Show Speed Value",
         "description": "$ will be displayed as Speed value"
@@ -106,6 +101,11 @@
         "id": 16,
         "label": "Set Speed only",
         "description": "$ will be displayed as Speed"
+      },
+      {
+        "id": 17,
+        "label": "Clear or Reset LCD",
+        "description": "0 = Clear LCD, 1 = Reset starting labels"
       }
     ]
   }

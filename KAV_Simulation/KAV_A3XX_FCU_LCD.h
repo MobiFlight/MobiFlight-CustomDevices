@@ -76,4 +76,5 @@ public:
     void setTrackMode();
     void setSpeedMode(uint16_t value);
     void setMachMode(uint16_t value);
+    void clearOrReset(bool enabled);
 };
