@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MobiflightConnector>
+  <outputs>
+    <config guid="6768a80d-bc0c-4302-8e87-2ec2bffbd45d">
+      <active>true</active>
+      <description>EFIS L - State Condition (0=QFE, 1=QNH, 2-3=STD)</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:XMLVAR_Baro1_Mode)" UUID="08af65f2-159e-45c3-8e94-4360e88046dc" />
+        <test type="Float" value="3" />
+        <modifiers>
+          <transformation active="False" expression="$" />
+          <comparison active="False" value="" operand="" ifValue="" elseValue="" />
+        </modifiers>
+        <display type="CustomDevice" serial="Kav RaspiPico/ SN-E6614C311B6BBF32" trigger="normal" customType="" customName="EFIS L" messageType="2" value="$" />
+        <preconditions />
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="c11ed66b-0a00-4cbd-9ad5-ec40e67bb1a2">
+      <active>true</active>
+      <description>EFIS L - QNH Value</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:XMLVAR_Baro1_Mode) 1 &gt; if{ 99 } els{ (L:XMLVAR_Baro_Selector_HPA_1,bool) ! if{ (A:KOHLSMAN SETTING HG, inHg) } els{ (A:KOHLSMAN SETTING HG, mbar) near } }" UUID="98d91496-0202-4e60-b0cc-5157ceb25af5" />
+        <test type="Float" value="123" />
+        <modifiers>
+          <transformation active="True" expression="if($&lt;100, Round($, 2)*100, $)" />
+        </modifiers>
+        <display type="CustomDevice" serial="Kav RaspiPico/ SN-E6614C311B6BBF32" trigger="normal" customType="" customName="EFIS L" messageType="0" value="$" />
+        <preconditions>
+          <precondition type="config" active="true" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" operand="=" value="1" logic="and" />
+        </preconditions>
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="27cca4b2-6234-47ec-8cd4-5d170b07d2ef">
+      <active>true</active>
+      <description>EFIS L - QFE Value</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:XMLVAR_Baro1_Mode) 1 &gt; if{ 99 } els{ (L:XMLVAR_Baro_Selector_HPA_1,bool) ! if{ (A:KOHLSMAN SETTING HG, inHg) } els{ (A:KOHLSMAN SETTING HG, mbar) near } }" UUID="98d91496-0202-4e60-b0cc-5157ceb25af5" />
+        <test type="Float" value="1" />
+        <modifiers>
+          <transformation active="True" expression="if($&lt;100, Round($, 2)*100, $)" />
+          <transformation active="False" expression="$+#" />
+        </modifiers>
+        <display type="CustomDevice" serial="Kav RaspiPico/ SN-E6614C311B6BBF32" trigger="normal" customType="" customName="EFIS L" messageType="1" value="$" />
+        <preconditions>
+          <precondition type="config" active="true" ref="6768a80d-bc0c-4302-8e87-2ec2bffbd45d" operand="=" value="0" logic="and" />
+        </preconditions>
+        <configrefs>
+          <configref active="False" ref="71e6c53f-cde0-4f1b-b211-3a159b0ebc7a" placeholder="#" />
+        </configrefs>
+      </settings>
+    </config>
+  </outputs>
+  <inputs />
+</MobiflightConnector>

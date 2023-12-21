@@ -67,19 +67,12 @@ void KAV_A3XX_EFIS_LCD::setDot(bool enabled)
     refreshLCD(DIGIT_TWO);
 }
 
-void KAV_A3XX_EFIS_LCD::showStd(uint16_t state)
+void KAV_A3XX_EFIS_LCD::showStd()
 {
-    if (state == 1) {
-        displayDigit(DIGIT_ONE, 5);
-        displayDigit(DIGIT_TWO, 11);
-        displayDigit(DIGIT_THREE, 12);
-        displayDigit(DIGIT_FOUR, 13);
-    } else {
-        displayDigit(DIGIT_ONE, 13);
-        displayDigit(DIGIT_TWO, 13);
-        displayDigit(DIGIT_THREE, 13);
-        displayDigit(DIGIT_FOUR, 13);
-    }
+    displayDigit(DIGIT_ONE, 5);
+    displayDigit(DIGIT_TWO, 11);
+    displayDigit(DIGIT_THREE, 12);
+    displayDigit(DIGIT_FOUR, 13);
     setDot(false);
     setQFE(false);
     setQNH(false);
@@ -88,6 +81,7 @@ void KAV_A3XX_EFIS_LCD::showStd(uint16_t state)
 // Show Values
 void KAV_A3XX_EFIS_LCD::showQNHValue(uint16_t value)
 {
+    _QNHvalue = value;
     if (value > 9999) value = 9999;
     if (value < 2000) {
         // If value is less than 2000, then it's hPa, so no decimal point.
@@ -110,6 +104,7 @@ void KAV_A3XX_EFIS_LCD::showQNHValue(uint16_t value)
 
 void KAV_A3XX_EFIS_LCD::showQFEValue(uint16_t value)
 {
+    _QFEValue = value;
     if (value > 9999) value = 9999;
     if (value < 2000) {
         // If value is less than 2000, then it's hPa, so no decimal point.
@@ -177,6 +172,12 @@ void KAV_A3XX_EFIS_LCD::set(int16_t messageID, char *setPoint)
         showQNHValue((uint16_t)data);
     else if (messageID == 1)
         showQFEValue((uint16_t)data);
-    else if (messageID == 2)
-        showStd((uint16_t)data);
+    else if (messageID == 2) {
+        if (data == 0)
+            showQFEValue(_QFEValue);
+        else if (data == 1)
+            showQNHValue(_QNHvalue);
+        else
+            showStd();
+    }
 }

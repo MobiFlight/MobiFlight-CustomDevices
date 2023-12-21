@@ -15,12 +15,14 @@ class KAV_A3XX_EFIS_LCD
 {
 private:
     // Fields
-    HT1621  ht_efis;
-    uint8_t buffer[BUFFER_SIZE_MAX];
-    bool    _initialised;
-    byte    _CS;
-    byte    _CLK;
-    byte    _DATA;
+    HT1621   ht_efis;
+    uint8_t  buffer[BUFFER_SIZE_MAX];
+    bool     _initialised;
+    byte     _CS;
+    byte     _CLK;
+    byte     _DATA;
+    uint16_t _QNHvalue;
+    uint16_t _QFEValue;
 
     // Methods
     void displayDigit(uint8_t address, uint8_t digit);
@@ -43,7 +45,7 @@ public:
     // Set Dot Function
     void setDot(bool enabled);
     // Show Std function
-    void showStd(uint16_t state);
+    void showStd();
 
     // Show QFE function
     void showQFEValue(uint16_t value);
