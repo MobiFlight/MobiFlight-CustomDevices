@@ -17,7 +17,7 @@
       <active>true</active>
       <description>RMP L ACTIVE</description>
       <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <source type="SimConnect" VarType="CODE" Value="" UUID="-" />
+        <source type="SimConnect" VarType="LVAR" Value="" />
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="if(X=1,A,if(X=2,B,if(X=3,C,0)))" />
@@ -186,7 +186,7 @@
       <active>true</active>
       <description>RMP R Radio ACTIVE</description>
       <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <source type="SimConnect" VarType="CODE" Value="" UUID="-" />
+        <source type="SimConnect" VarType="LVAR" Value="" />
         <test type="Float" value="1" />
         <modifiers>
           <transformation active="True" expression="if(X=1,A,if(X=2,B,if(X=3,C,0)))" />
@@ -347,6 +347,63 @@
         <test type="Float" value="1" />
         <modifiers />
         <display type="CustomDevice" serial="Kav Mega Pedesta/ SN-D93-0CE" trigger="normal" customType="" customName="TCAS" messageType="3" value="$" />
+        <preconditions />
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="13bebeed-279e-4911-90ec-4298f4ef93e9">
+      <active>false</active>
+      <description>-</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="LVAR" Value="" />
+        <test type="Float" value="1" />
+        <modifiers>
+          <comparison active="True" value="" operand="=" ifValue="1" elseValue="0" />
+        </modifiers>
+        <display type="" serial="-" trigger="change" pin="" pinBrightness="255" />
+        <preconditions />
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="2fdb098a-88a0-4733-a420-419ca5460a7c">
+      <active>true</active>
+      <description>Rudder Trim L</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:A32NX_HYD_RUDDER_TRIM_FEEDBACK_ANGLE)" UUID="c8351461-2213-4eb0-9a77-fc7a2c27d677" />
+        <test type="Float" value="1" />
+        <modifiers>
+          <transformation active="True" expression="if($&lt;0,1,0)" />
+        </modifiers>
+        <display type="CustomDevice" serial="Kav Mega Pedesta/ SN-D93-0CE" trigger="normal" customType="" customName="RUDDER TRIM" messageType="0" value="$" />
+        <preconditions />
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="86f644cf-debf-4e95-b235-b884e79ec358">
+      <active>true</active>
+      <description>Rudder Trim R</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:A32NX_HYD_RUDDER_TRIM_FEEDBACK_ANGLE)" UUID="c8351461-2213-4eb0-9a77-fc7a2c27d677" />
+        <test type="Float" value="1" />
+        <modifiers>
+          <transformation active="True" expression="if($&gt;0,1,0)" />
+        </modifiers>
+        <display type="CustomDevice" serial="Kav Mega Pedesta/ SN-D93-0CE" trigger="normal" customType="" customName="RUDDER TRIM" messageType="1" value="$" />
+        <preconditions />
+        <configrefs />
+      </settings>
+    </config>
+    <config guid="90520bc7-1478-4f63-a047-63ec70c137c0">
+      <active>true</active>
+      <description>Rudder Trim Value</description>
+      <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.1, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <source type="SimConnect" VarType="CODE" Value="(L:A32NX_HYD_RUDDER_TRIM_FEEDBACK_ANGLE)" UUID="c8351461-2213-4eb0-9a77-fc7a2c27d677" />
+        <test type="Float" value="1" />
+        <modifiers>
+          <transformation active="True" expression="Round($,1)" />
+          <transformation active="True" expression="$*10" />
+        </modifiers>
+        <display type="CustomDevice" serial="Kav Mega Pedesta/ SN-D93-0CE" trigger="normal" customType="" customName="RUDDER TRIM" messageType="3" value="$" />
         <preconditions />
         <configrefs />
       </settings>

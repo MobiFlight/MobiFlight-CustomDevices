@@ -30,7 +30,7 @@
       <string>36</string>
     </ConfiguredPins>
   </CustomDevice>
-  <CustomDevice Name="TCAS" CustomType="KAV_RAD_TCAS" Pins="14|15|16" Config="">
+  <CustomDevice Name="TCAS" CustomType="KAV_RAD_TCAS" Pins="14|16|15" Config="">
     <ConfiguredPins>
       <string>14</string>
       <string>16</string>
@@ -39,9 +39,9 @@
   </CustomDevice>
   <CustomDevice Name="RUDDER TRIM" CustomType="KAV_RUDDER" Pins="17|18|19" Config="">
     <ConfiguredPins>
-      <string>17</string>
-      <string>18</string>
-      <string>19</string>
+      <string>51</string>
+      <string>49</string>
+      <string>50</string>
     </ConfiguredPins>
   </CustomDevice>
 </Config>
