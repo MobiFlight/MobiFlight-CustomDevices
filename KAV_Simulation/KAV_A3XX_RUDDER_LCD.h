@@ -43,9 +43,10 @@ public:
   // Set Dot Function
   void setDot(bool enabled);
   // Set value function
-  void setValueInt(uint16_t value);
+  void setValueInt(int16_t value);
 
   // Show Rudder Value function
   void showLeftValueInt(uint16_t value);
   void showRightValueInt(uint16_t value);
+  void showLandRValue(int16_t value);
 };

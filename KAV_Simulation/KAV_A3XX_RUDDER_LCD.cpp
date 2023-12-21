@@ -90,7 +90,9 @@ void KAV_A3XX_RUDDER_LCD::clearDigit(uint8_t address)
  */
 void KAV_A3XX_RUDDER_LCD::setLeft(bool enabled)
 {
-    displayDigit(DIGIT_LR, 11);
+    if (enabled) {
+        displayDigit(DIGIT_LR, 11);
+    }
 }
 
 /**
@@ -99,7 +101,9 @@ void KAV_A3XX_RUDDER_LCD::setLeft(bool enabled)
  */
 void KAV_A3XX_RUDDER_LCD::setRight(bool enabled)
 {
-    displayDigit(DIGIT_LR, 12);
+    if (enabled) {
+        displayDigit(DIGIT_LR, 12);
+    }
 }
 
 /**
@@ -117,8 +121,14 @@ void KAV_A3XX_RUDDER_LCD::setDot(bool enabled)
  * Set the value of the LCD using an integer.
  * @param value The value to display
  */
-void KAV_A3XX_RUDDER_LCD::setValueInt(uint16_t value)
+void KAV_A3XX_RUDDER_LCD::setValueInt(int16_t value)
 {
+    // Convert the number from negative to positive if it's negative.
+    if (value < 0) {
+        value = value * -1;
+    }
+
+    // Display the value.
     if (value > 999)
         value = 999;
     displayDigit(DIGIT_FOUR, (value % 10));
@@ -162,6 +172,25 @@ void KAV_A3XX_RUDDER_LCD::showRightValueInt(uint16_t value)
 {
     setValueInt(value);
     setRight(true);
+}
+
+/**
+ * Show the value on the display with the 'L' or 'R' character enabled using an integer.
+ * @param value The value to display
+*/
+void KAV_A3XX_RUDDER_LCD::showLandRValue(int16_t value)
+{
+    if (value < 0)
+    {
+        setLeft(true);
+        // Convert a negative value to a positive one to display it.
+        value = value * -1;
+    }
+    else
+    {
+        setRight(true);
+    }
+    setValueInt(value);
 }
 
 // Global Functions
@@ -212,7 +241,8 @@ void KAV_A3XX_RUDDER_LCD::displayDigit(uint8_t address, uint8_t digit)
  */
 void KAV_A3XX_RUDDER_LCD::set(int16_t messageID, char *setPoint)
 {
-    int32_t data = atoi(setPoint);
+    // Using `strtol()` instead of `atoi()` to allow for negative numbers.
+    int32_t data = strtol(setPoint, NULL, 10);
     /* **********************************************************************************
         Each messageID has it's own value
         check for the messageID and define what to do.
@@ -233,10 +263,13 @@ void KAV_A3XX_RUDDER_LCD::set(int16_t messageID, char *setPoint)
     else if (messageID == 2)
         setDot((uint16_t)data);
     else if (messageID == 3)
-        setValueInt((uint16_t)data);
+        // This one needs to keep it's sign, so using `int16_t`.
+        setValueInt((int16_t)data);
     else if (messageID == 4)
         showLeftValueInt((uint16_t)data);
     else if (messageID == 5)
         showRightValueInt((uint16_t)data);
-
+    else if (messageID == 6)
+        // This one needs to keep it's sign, so using `int16_t`.
+        showLandRValue((int16_t)data);
 }
