@@ -241,7 +241,7 @@ void KAV_A3XX_RUDDER_LCD::displayDigit(uint8_t address, uint8_t digit)
  */
 void KAV_A3XX_RUDDER_LCD::set(int16_t messageID, char *setPoint)
 {
-    // Using `strtol()` instead of `atoi()` to allow for negative numbers.
+    // Using `strtol()` instead of `atoi()` to allow for larger value numbers.
     int32_t data = strtol(setPoint, NULL, 10);
     /* **********************************************************************************
         Each messageID has it's own value
