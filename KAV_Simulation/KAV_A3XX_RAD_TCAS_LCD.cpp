@@ -126,7 +126,6 @@ void KAV_A3XX_RAD_TCAS_LCD::setAllDots(bool enabled)
  */
 void KAV_A3XX_RAD_TCAS_LCD::setRadioValue(uint32_t value)
 {
-    // TODO: Add a condition that if 0, then show 'data' on the display, then break.
     if (value == 0)
     {
         displayDigit(DIGIT_ONE, 11);
