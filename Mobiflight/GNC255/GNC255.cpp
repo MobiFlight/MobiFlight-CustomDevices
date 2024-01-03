@@ -86,8 +86,6 @@ void GNC255::set(int16_t messageID, const char *data)
     switch (messageID) {
     case -1:
         _stop();
-    case -2:
-        _stop();
     case 0:
         break;
     case 1: // set Active Frequency

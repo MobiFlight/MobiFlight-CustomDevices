@@ -36,7 +36,6 @@ public:
   void clearDigit(uint8_t address);
   void attach(byte CS, byte CLK, byte DATA);
   void detach();
-  void handleMobiFlightRaw(char *string);
   void set(int16_t messageID, char *setPoint);
 
   // Set 'V' function
