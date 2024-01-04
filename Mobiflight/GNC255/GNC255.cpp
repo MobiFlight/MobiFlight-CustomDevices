@@ -81,11 +81,14 @@ void GNC255::set(int16_t messageID, const char *data)
     /* **********************************************************************************
         Each messageID has it's own value
         check for the messageID and define what to do:
+        MessageID == -1 will be send from the connector when PowerSavingMode is entered
+        Message will be "0" for leaving and "1" for entering PowerSavingMode
     ********************************************************************************** */
     // do something according your messageID
     switch (messageID) {
     case -1:
-        _stop();
+        if (strcmp(data, "1") == 0)
+            _stop();
     case 0:
         break;
     case 1: // set Active Frequency

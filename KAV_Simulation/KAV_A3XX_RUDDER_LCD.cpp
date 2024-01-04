@@ -248,11 +248,13 @@ void KAV_A3XX_RUDDER_LCD::set(int16_t messageID, char *setPoint)
         check for the messageID and define what to do.
         Important Remark!
         MessageID == -1 will be send from the connector when PowerSavingMode is entered
+        Message will be "0" for leaving and "1" for entering PowerSavingMode
         Put in your code to enter this mode (e.g. clear a display)
     ********************************************************************************** */
-    if (messageID == -1)
-        clearLCD();
-    else if (messageID == 0)
+    if (messageID == -1) {
+        if (data)
+            clearLCD();
+    } else if (messageID == 0)
         setLeft((uint16_t)data);
     else if (messageID == 1)
         setRight((uint16_t)data);

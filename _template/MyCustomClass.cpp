@@ -35,7 +35,8 @@ void MyCustomClass::set(int16_t messageID, char *setPoint)
         Each messageID has it's own value
         check for the messageID and define what to do.
         Important Remark!
-        MessageID == -1 will be send from the connector when PowerSavingMode is entered
+        MessageID == -1 will be send from the connector when PowerSavingMode is set
+        Message will be "0" for leaving and "1" for entering PowerSavingMode
         Put in your code to enter this mode (e.g. clear a display)
     ********************************************************************************** */
     int32_t  data = atoi(setPoint);
@@ -44,7 +45,7 @@ void MyCustomClass::set(int16_t messageID, char *setPoint)
     // do something according your messageID
     switch (messageID) {
     case -1:
-        // tbd., get's called when PowerSavingMode is entered
+        // tbd., get's called when PowerSavingMode is set
     case 0:
         output = (uint16_t)data;
         data   = output;

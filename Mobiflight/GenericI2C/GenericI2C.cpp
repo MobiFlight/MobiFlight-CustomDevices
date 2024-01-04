@@ -41,6 +41,7 @@ void GenericI2C::set(int16_t messageID, char *payload)
         max. length of a message could be 96 bytes due to limitation from the CMDmessenger
         Important Remark!
         MessageID == -1 will be send from the connector when PowerSavingMode is entered
+        Message will be "0" for leaving and "1" for entering PowerSavingMode
     ********************************************************************************** */
     char buffer[7] = {0};
     uint8_t countChar = 0;
