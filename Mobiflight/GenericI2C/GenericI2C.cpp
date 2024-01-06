@@ -40,8 +40,9 @@ void GenericI2C::set(int16_t messageID, char *payload)
         For AVR's the I2C buffer is only 32 bytes, so the complete message gets spilt up if exceeding
         max. length of a message could be 96 bytes due to limitation from the CMDmessenger
         Important Remark!
-        MessageID == -1 will be send from the connector when PowerSavingMode is entered
-        Message will be "0" for leaving and "1" for entering PowerSavingMode
+        MessageID == -2 will be send from the board when PowerSavingMode is set
+            Message will be "0" for leaving and "1" for entering PowerSavingMode
+        MessageID == -1 will be send from the connector when Connector stops running
     ********************************************************************************** */
     char buffer[7] = {0};
     uint8_t countChar = 0;
