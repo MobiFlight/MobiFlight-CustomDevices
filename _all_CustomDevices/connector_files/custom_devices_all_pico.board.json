@@ -33,7 +33,13 @@
         "MOBIFLIGHT_4TM1637",
         "MOBIFLIGHT_6TM1637",
         "MOBIFLIGHT_GENERICI2C"
-      ]
+      ],
+      "Community": {
+        "Project": "Mobiflight all devices",
+        "Website": "https://github.com/MobiFlight/MobiFlight-CustomDevices/tree/main/_all_CustomDevices",
+        "Docs": "https://github.com/MobiFlight/MobiFlight-Connector/wiki",
+        "Support": "https://mobiflight.com/discord"
+      }
     },
     "ModuleLimits": {
       "MaxAnalogInputs": 3,
