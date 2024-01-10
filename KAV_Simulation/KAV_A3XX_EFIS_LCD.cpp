@@ -170,9 +170,9 @@ void KAV_A3XX_EFIS_LCD::set(int16_t messageID, char *setPoint)
         Put in your code to enter this mode (e.g. clear a display)
     ********************************************************************************** */
     if (messageID == -1)
-        return; // Ignore for now, handle this condition later.
+        clearLCD();
     else if (messageID == -2)
-        return; // Ignore for now, handle this condition later.
+        clearLCD();
     else if (messageID == 0)
         showQNHValue((uint16_t)data);
     else if (messageID == 1)
