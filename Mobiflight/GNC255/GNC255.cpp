@@ -89,7 +89,7 @@ void GNC255::set(int16_t messageID, const char *data)
     // do something according your messageID
     switch (messageID) {
     case -2:
-        if (data[0], == '1')
+        if (data[0] == '1')
             _stop();
         break;
     case -1:
